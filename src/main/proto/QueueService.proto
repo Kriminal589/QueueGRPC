@@ -1,0 +1,44 @@
+syntax = "proto3";
+package studentq.queue;
+
+service QueueService {
+  rpc add(AddQueue) returns (Response) {}
+  rpc getByHex(HexRequest) returns (QueueResponse) {}
+  rpc delete(DeleteRequest) returns (Response) {}
+  rpc all(AllResponse) returns (stream QueueResponse) {}
+}
+
+message AddQueue {
+  int64 idStudent = 1;
+  string subjectName = 2;
+  int32 countApps = 3;
+  int32 dateToPass = 4;
+  bool type = 5;
+}
+
+message QueueResponse {
+  int64 id = 1;
+  string subjectName = 2;
+  string hexCode = 3;
+  int64 idCreator = 4;
+  int32 countApps = 5;
+  int32 dateToPass = 6;
+  int32 currentApp = 7;
+  bool type = 8;
+}
+
+message Response {
+  int32 code = 1;
+}
+
+message HexRequest {
+  string hexCode = 1;
+}
+
+message DeleteRequest {
+  int64 id = 1;
+}
+
+message AllResponse {
+  int64 idStudent = 1;
+}

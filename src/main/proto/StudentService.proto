@@ -1,0 +1,30 @@
+syntax = "proto3";
+package studentq.student;
+
+service StudentService {
+  rpc add(StudentResponse) returns (Response) {}
+  rpc all(AllRequest) returns (stream StudentResponse) {}
+  rpc getById(IdRequest) returns (StudentResponse) {}
+  rpc deleteById(DeleteRequest) returns (Response) {}
+}
+
+message Response {
+  int32 code = 1;
+}
+
+message AllRequest {
+  int64 idStudent = 1;
+}
+
+message StudentResponse {
+  string name = 1;
+  int64 id = 2;
+}
+
+message IdRequest {
+  int64 id = 1;
+}
+
+message DeleteRequest {
+  int64 id = 1;
+}

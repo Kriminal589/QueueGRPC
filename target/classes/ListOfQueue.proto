@@ -1,0 +1,46 @@
+syntax = "proto3";
+package studentq.listqueues;
+
+service ListOfQueueService {
+  rpc add(AddResponse) returns (Response) {}
+  rpc all(AllRequest) returns (stream ListQueueResponse) {}
+  rpc getByIdStudent(IdStudentRequest) returns (stream ListQueueResponse) {}
+  rpc getByIdQueue(IdQueueRequest) returns (stream ListQueueResponse) {}
+  rpc delete(DeleteRequest) returns (Response);
+}
+
+message AddResponse {
+  string hexCode = 1;
+  int64 idStudent = 2;
+  int32 numberOfApp = 3;
+}
+
+message Response {
+  int32 code = 1;
+}
+
+message ListQueueResponse {
+  int64 id = 1;
+  int64 idStudent = 2;
+  int64 idQueue = 3;
+  int32 positionStudent = 4;
+  int32 numberOfApp = 5;
+  int64 entryDate = 6;
+}
+
+message AllRequest {
+  int64 idStudent = 1;
+}
+
+message IdStudentRequest {
+  int64 idStudent = 1;
+}
+
+message IdQueueRequest {
+  int64 idQueue = 1;
+}
+
+message DeleteRequest {
+  int64 idStudent = 1;
+  int64 idQueue = 2;
+}
